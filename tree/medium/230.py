@@ -27,7 +27,7 @@ class Solution:
     def kthSmallest(self, root, k: int) -> int:
         
         def find(node):            
-            if not node:
+            if not node or self.res:
                 return
             
             find(node.left)                        

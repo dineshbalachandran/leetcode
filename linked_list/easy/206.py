@@ -32,12 +32,15 @@ class Solution:
     def reverseList(self, head):
         
         curr, prev = head, None
-        while curr:
-            t = curr.next
-            curr.next = prev
-            prev = curr
-            curr = t
-            
+        # while curr:
+        #     t = curr.next
+        #     curr.next = prev
+        #     prev = curr
+        #     curr = t
+
+        while curr:            
+            curr.next, prev, curr = prev, curr, curr.next            
+
         return prev
 
 if __name__ == "__main__":
