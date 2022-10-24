@@ -1,6 +1,8 @@
 """
 Medium
 
+143. Reorder List
+
 You are given the head of a singly linked-list. The list can be represented as:
 
 L0 → L1 → … → Ln - 1 → Ln
@@ -12,12 +14,10 @@ You may not modify the values in the list's nodes. Only nodes themselves may be 
  
 
 Example 1:
-
 Input: head = [1,2,3,4]
 Output: [1,4,2,3]
 
 Example 2:
-
 Input: head = [1,2,3,4,5]
 Output: [1,5,2,4,3]
 
@@ -63,18 +63,22 @@ class Solution:
         second = slow.next
         prev = slow.next = None
         while second:
-            tmp = second.next
-            second.next = prev
-            prev = second
-            second = tmp
+            # tmp = second.next
+            # second.next = prev
+            # prev = second
+            # second = tmp
+
+            second.next, second, prev = prev, second.next, second
         
         # merge two halfs
         first, second = head, prev
         while second:
-            tmp1, tmp2 = first.next, second.next
-            first.next = second
-            second.next = tmp1
-            first, second = tmp1, tmp2
+            # tmp1, tmp2 = first.next, second.next
+            # first.next = second
+            # second.next = tmp1
+            # first, second = tmp1, tmp2
+
+            first, first.next, second.next, second = first.next, second, first.next, second.next
 
 def listtoNode(l):
     h, p = None, None

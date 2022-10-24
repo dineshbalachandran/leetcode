@@ -36,21 +36,20 @@ class TreeNode:
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
-        def lcs(node, l, r):
+        def lcs(node):
             
             if l.val <= node.val and node.val <= r.val:
                 return node
             
             if l.val > node.val and r.val > node.val:
-                return lcs(node.right, l, r)
+                return lcs(node.right)
             else:
-                return lcs(node.left, l, r)
+                return lcs(node.left)
             
-        
-        if q.val > p.val:
-            return lcs(root, p, q)
-        else:
-            return lcs(root, q, p)
+        l, r = (p, q) if q.val > p.val else (q, p)
+
+        return lcs(root)
+
 
 def listtoTree(l):
     def toTree(k):

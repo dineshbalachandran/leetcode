@@ -56,11 +56,12 @@ class Solution:
                 return nums[p]
         
         res = quickSelect(0, len(nums)-1)
-        print(nums)
+
         return res
 
 if __name__ == "__main__":
     tests = [
+        ([1,4,3,5,6], 2),
         ([3,2,1,5,6,4], 2),
         ([3,2,3,1,2,4,5,5,6], 4)
     ]

@@ -18,8 +18,6 @@ Output: []
 
 """
 
-from collections import deque
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -32,23 +30,19 @@ class Solution:
         if not root:
             return []
         
-        q = deque([[root]])
-        
         res = []
-        while q:            
-            nodes = q.pop()
+        l = [root]
+        while l:            
+            l, nodes = [], l
             
-            if not nodes:
-                break
-            
-            res.append([node.val for node in nodes])                
-            l = []
+            rl = []
             for node in nodes:
+                rl.append(node.val)
                 if node.left:
                     l.append(node.left)
                 if node.right:
                     l.append(node.right)
-            q.append(l)
+            res.append(rl)
         
         return res
 

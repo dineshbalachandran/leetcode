@@ -36,14 +36,14 @@ Constraints:
 1 <= price <= 105
 At most 104 calls will be made to next.
 
-This is a MONOTONICALLY decreasing stack
+This is a MONOTONICALLY decreasing stack solution
 
 """
 
 class StockSpanner:
 
     def __init__(self):
-        self.stack = [(1000000, 1)]
+        self.stack = [(float("infinity"), 1)] # a large value
         
 
     def next(self, price: int) -> int:
@@ -66,4 +66,5 @@ if __name__ == "__main__":
     for test in tests:
       S = StockSpanner()
       print([S.next(price) for price in test])
+      print(S.stack)
         
