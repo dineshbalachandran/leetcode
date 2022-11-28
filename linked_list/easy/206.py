@@ -23,6 +23,8 @@ Output: []
 
 """
 
+from typing import Optional
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -45,6 +47,19 @@ class Solution:
 
         return prev
 
+    # recursive solution
+    def reverseList2(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+      if not head:
+        return None
+      
+      if not head.next:
+        return head
+
+      rv = self.reverseList2(head.next)
+      head.next.next, head.next = head, None
+      return rv
+
 if __name__ == "__main__":
     tests = [
         [1, 2, 3, 4, 5],
@@ -61,4 +76,4 @@ if __name__ == "__main__":
             if p:
                 p.next = n
             p = n
-        print(Solution().reverseList(h))
+        print(Solution().reverseList2(h))

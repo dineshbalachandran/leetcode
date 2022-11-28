@@ -50,3 +50,5 @@ if __name__ == "__main__":
 
     for test in tests:
         print(Solution().climbStairs(test))
+        # flatMap Monad[List] range(3, n) tests
+        # flatMap
