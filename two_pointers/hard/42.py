@@ -15,6 +15,8 @@ Input: height = [4,2,0,3,2,5]
 Output: 9
 
 """
+from typing import List
+
 class Solution:
     def trap(self, height) -> int:
         
@@ -36,6 +38,27 @@ class Solution:
                 units += rightmax - height[r]
             
         return units
+    
+    # alternate solution using a monotonic stack approach
+    def trap2(self, height: List[int]) -> int:
+
+      monostack = [height[0]]
+      units = 0
+
+      for i in range(1, len(height)):
+        if height[i] > monostack[-1]:
+          if height[i] > monostack[0]:
+            while monostack:
+              units += monostack[0] - monostack.pop()
+          else:
+            j = len(monostack)-1
+            while monostack[j] < height[i]:
+              units += height[i] - monostack[j]
+              monostack[j] = height[i]
+              j -= 1
+        monostack.append(height[i])
+
+      return units 
 
 
 if __name__ == "__main__":
