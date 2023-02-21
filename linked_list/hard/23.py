@@ -46,9 +46,12 @@ class ListNode:
         self.next = next
     def __str__(self):
         return "".join(["ListNode{val: ", str(self.val), ", next: ", str(self.next), "}"]) if self else "None"
+    # def __lt__(self, obj):
+    #     return True if self.val < obj.val else False
+
 
 class Solution:
-    def mergeKLists(self, lists):
+    def mergeKListsNaive(self, lists):
         
         h = []
         
@@ -63,6 +66,30 @@ class Solution:
         while h:
             curr.next = ListNode(heapq.heappop(h))
             curr = curr.next
+        
+        return dummy.next
+    
+    # O(n*logK)
+    def mergeKLists(self, lists):
+
+        h = []
+        i = 0
+        for node in lists:
+            if node:
+                #the i is just a random value to facilitate heap comparison, in the event the 
+                #node.val happen to have the same value and avoid having to implement a __lt__ in the ListNode
+                heapq.heappush(h, (node.val, i, node)) 
+                i += 1
+        
+        dummy = ListNode()
+        curr = dummy
+        while h:
+            _, _, node = heapq.heappop(h)
+            curr.next = ListNode(node.val)
+            if node.next:
+                heapq.heappush(h, (node.next.val, i, node.next))
+            curr = curr.next
+            i += 1
         
         return dummy.next
 

@@ -1,7 +1,7 @@
 """
 
-Tarjan's algorithm to find strongly connected components (where every vertex in a cycle is reachable from every other vertex in the cycle and once such
-a cycle is left, there is no way back into the SCC)
+Tarjan's algorithm to find strongly connected components (where every vertex in a cycle is reachable from every 
+other vertex in the cycle and once such a cycle is left, there is no way back into the SCC)
 
 """
 class Solution:
