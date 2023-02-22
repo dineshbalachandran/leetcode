@@ -48,9 +48,6 @@ not zero. The element with current index zero reduces the previous sum by len(nu
 together the current function value = previous function value + sum of all non zero index values - len(nums)-1*value of
 the element whose index is zero.
 
-The sum of all elements whose current index is not zero can be pre-calculated by summing all values except itself and 
-storing it in an array (cumsum).
-
 """
 
 from typing import List
@@ -58,14 +55,7 @@ from typing import List
 class Solution:
     def maxRotateFunction(self, nums: List[int]) -> int:
 
-        l, r = [0]*len(nums), [0]*len(nums)
-
-        for i in range(1, len(nums)):
-            l[i] = l[i-1] + nums[i-1]
-        for i in range(len(nums)-2, -1, -1):
-            r[i] = r[i+1] + nums[i+1]
-        
-        cumsum = [l[i]+r[i] for i in range(len(nums))]
+        cumsum = sum(nums)
 
         #find the initial sum with the 0th index having the factor '0'
         X = 0
@@ -75,7 +65,7 @@ class Solution:
         S = X
         #find the remaining sums with the factor '0' starting with the last element 
         for k in range(len(nums)-1, 0, -1):
-            X = X-(len(nums)-1)*nums[k]+cumsum[k]
+            X = X-(len(nums)-1)*nums[k]+(cumsum-nums[k])
             S = max(S, X)
         
         return S
