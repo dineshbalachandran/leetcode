@@ -25,7 +25,7 @@ class Solution:
   def minCost(self, deck: List[int]) -> int:
     N = len(deck)
     
-    bottom, top = deque([]), deque([])
+    bottom, top = deque(), deque()
 
     for i in range(N):
       bottom.appendleft(deck[i])
